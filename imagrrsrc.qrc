@@ -1,0 +1,18 @@
+<RCC>
+  <qresource prefix="newPrefix"/>
+  <qresource prefix="Icons">
+    <file>Images/sticky-notes.png</file>
+    <file>Images/italic.png</file>
+    <file>Images/underline-text.png</file>
+    <file>Images/letter-h.png</file>
+    <file>Images/diskette.png</file>
+    <file>Images/rgb.png</file>
+    <file>Images/fonts.png</file>
+    <file>Images/write.png</file>
+    <file>Images/find.png</file>
+    <file>Images/book.png</file>
+    <file>Images/notebook.png</file>
+    <file>Images/stationery.png</file>
+    <file>Images/book-with-add-button.png</file>
+  </qresource>
+</RCC>

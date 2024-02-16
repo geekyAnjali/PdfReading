@@ -76,8 +76,8 @@ background-color: rgb(255, 255, 255);}</string>
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>../Downloads/find.png</normaloff>../Downloads/find.png</iconset>
+          <iconset resource="imagrrsrc.qrc">
+           <normaloff>:/Icons/Images/find.png</normaloff>:/Icons/Images/find.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -122,9 +122,6 @@ background-color: rgb(255, 255, 255);}</string>
        </size>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="2" column="0">
-        <widget class="QPlainTextEdit" name="plainTextEdit"/>
-       </item>
        <item row="1" column="0">
         <widget class="QWidget" name="widget_6" native="true">
          <property name="minimumSize">
@@ -219,16 +216,6 @@ background-color: rgb(255, 255, 255);}</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(57, 57, 57);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </item>
@@ -272,8 +259,8 @@ background-color: rgb(70, 70, 70);</string>
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>../Downloads/pdfReader/book-with-add-button.png</normaloff>../Downloads/pdfReader/book-with-add-button.png</iconset>
+          <iconset resource="imagrrsrc.qrc">
+           <normaloff>:/Icons/Images/book-with-add-button.png</normaloff>:/Icons/Images/book-with-add-button.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -307,8 +294,8 @@ background-color: rgb(70, 70, 70);</string>
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>../Downloads/book.png</normaloff>../Downloads/book.png</iconset>
+          <iconset resource="imagrrsrc.qrc">
+           <normaloff>:/Icons/Images/book.png</normaloff>:/Icons/Images/book.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -337,6 +324,8 @@ background-color: rgb(70, 70, 70);</string>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="imagrrsrc.qrc"/>
+ </resources>
  <connections/>
 </ui>

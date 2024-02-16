@@ -1,14 +1,15 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QHBoxLayout, QPushButton, QAction, QFileDialog, QFontDialog, QColorDialog
-from PyQt5.QtGui import QFont, QColor, QTextCursor,QTextDocument
+from PyQt5.QtGui import QFont, QColor, QTextCursor,QTextDocument, QIcon
 from PyQt5.QtPrintSupport import QPrinter,QPrintDialog
-import fitz 
+import fitz ,os
 
 class TextEditor(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Text Editor")
-        self.setGeometry(100, 100, 800, 600)
+    def __init__(self,parent  = None):
+        super().__init__(parent)
+        self.setWindowTitle("Your Notes !")
+        self.setWindowIcon(QIcon("Images/sticky-notes.png"))
+        self.setGeometry(50, 50, 400, 400)
 
         self.textEdit = QTextEdit()
         self.setup_ui()
@@ -23,54 +24,72 @@ class TextEditor(QWidget):
         button_layout = QHBoxLayout()
         layout.addLayout(button_layout)
 
-        # Save Button
-        save_button = QPushButton("Save")
+        # Save ButtonC:\Users\pk\Downloads\pdfReader\Images\diskette.png
+        save_icn_path = os.path.join( 'Images', 'diskette.png')
+        # find_icn_path = os.path.join( 'Images', 'diskette.png')
+        bold_icn_path = os.path.join( 'Images', 'write.png')
+        font_icn_path  =os.path.join( 'Images', 'fonts.png')
+        italic_icn_path = os.path.join( 'Images', 'italic.png')
+        rgb_icn_path = os.path.join( 'Images', 'rgb.png')
+        underline_icn_path = os.path.join( 'Images', 'underline-text.png')
+        # print(os.path.exists(image_path))
+        heading_icn_path = os.path.join( 'Images', 'letter-h.png')
+        save_button = QPushButton("")
         save_button.clicked.connect(self.save_file)
         button_layout.addWidget(save_button)
+        save_button.setIcon(QIcon(save_icn_path))
+        # save_button.setIcon(QIcon("diskette.png"))
 
-        # Save as PDF Button
-        pdf_button = QPushButton("Save as PDF")
-        pdf_button.clicked.connect(self.save_as_pdf)
-        button_layout.addWidget(pdf_button)
-
-        load_pdf_button = QPushButton("Load PDF File")
-        load_pdf_button.clicked.connect(self.load_pdf)
-        layout.addWidget(load_pdf_button)
+        
+# -------------------------------load button------------------------
+        # load_pdf_button = QPushButton("Load PDF File")
+        # load_pdf_button.clicked.connect(self.load_pdf)
+        # layout.addWidget(load_pdf_button)
         # Font Style Button
-        font_button = QPushButton("Font Style")
+# ------------------------------------------------------------------
+
+        font_button = QPushButton("")
         font_button.clicked.connect(self.set_font)
         button_layout.addWidget(font_button)
-
+        font_button.setIcon(QIcon(font_icn_path))
+        
+        
         # Bold Button
-        bold_button = QPushButton("Bold")
+        bold_button = QPushButton("")
         bold_button.clicked.connect(self.set_bold)
         button_layout.addWidget(bold_button)
-
+        bold_button.setIcon(QIcon(bold_icn_path))
+        
         # Italic Button
-        italic_button = QPushButton("Italic")
+        italic_button = QPushButton("")
         italic_button.clicked.connect(self.set_italic)
         button_layout.addWidget(italic_button)
-
+        italic_button.setIcon(QIcon(italic_icn_path))
         # Underline Button
-        underline_button = QPushButton("Underline")
+        underline_button = QPushButton("")
         underline_button.clicked.connect(self.set_underline)
         button_layout.addWidget(underline_button)
-
+        underline_button.setIcon(QIcon(underline_icn_path))
+        
         # Headings Button
-        headings_button = QPushButton("Headings")
+        headings_button = QPushButton("")
         headings_button.clicked.connect(self.set_headings)
         button_layout.addWidget(headings_button)
-
+        headings_button.setIcon(QIcon(heading_icn_path))
         # Color Button
-        color_button = QPushButton("Color")
+        
+        color_button = QPushButton("")
         color_button.clicked.connect(self.set_color)
         button_layout.addWidget(color_button)
+        color_button.setIcon(QIcon(rgb_icn_path))
+     
+        self.set_default_font()
         
-        font_button.clicked.connect(self.set_font)
         # layout.addWidget(font_button)
-
+     
+        
     def set_default_font(self):
-        default_font = QFont("Arial", 12)  # Default font: Arial, size 12
+        default_font = QFont("Arial", 18)  # Default font: Arial, size 12
         self.textEdit.setFont(default_font)
 
     def save_file(self):
@@ -125,12 +144,14 @@ class TextEditor(QWidget):
                     for line in block["lines"]:
                         for span in line["spans"]:
                             font_size = span["size"]
+                            print(span['color'])
                             font_color = QColor.fromRgb(span["color"][0], span["color"][1], span["color"][2])
                             font_name = span["font"]
                             text_with_format += f'<span style="font-family:{font_name}; font-size:{font_size}pt; color:rgb({font_color.red()},{font_color.green()},{font_color.blue()})">{span["text"]}</span>'
+                            # text_with_format += f'<span style="font-family:{font_name}; font-size:{font_size}pt;)">{span["text"]}</span>'
                 text_with_format += "<br>"
             self.textEdit.setHtml(text_with_format)
-
+# app = QApplication(sys.argv)
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     text_editor = TextEditor()
