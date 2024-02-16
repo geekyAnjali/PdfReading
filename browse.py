@@ -27,7 +27,7 @@ class PDFViewerWidget(QtWidgets.QWidget):
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     pdf_path = r"c:\Users\pk\Downloads\Study material Pdfs\let-us-python-3nbsped.pdf"
-    window = PDFViewerWidget(pdf_path)
+    window = PDFViewerWidget(pdf_path=pdf_path)
     window.setGeometry(600, 50, 800, 600)
     window.show()
     sys.exit(app.exec_())
