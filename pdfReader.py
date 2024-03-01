@@ -3,7 +3,7 @@ import math
 import sys
 
 from PyQt5.QtWidgets import (QListWidgetItem,QSplitter, QFileDialog, QMainWindow, QMessageBox,
-                               QApplication)
+                               QApplication,QDialog)
 
 
 from PyQt5.QtCore import QModelIndex, QPoint, QStandardPaths, QUrl ,Qt
@@ -14,24 +14,27 @@ import json
 import os 
 
 # a = TextEditor()
-class MainWindow(QMainWindow,Ui_MainWindow):
+class MainWindow(Ui_MainWindow,QMainWindow):
     def __init__(self,parent=None):
         super().__init__()
+  
         self.setupUi(self)
         self.add_pdf_bttn.clicked.connect(self.load_pdf)
-        self.gridLayout_2.addWidget(TextEditor(self))
-        self.pdfViewWidget = PDFViewerWidget(self)
-        self.gridLayout_3.addWidget( self.pdfViewWidget)
+        # self.gridLayout_2.addWidget(TextEditor(self))
+        TextEditor(self.widget_7)
+        self.pdfViewWidget =  PDFViewerWidget(self.widget_4)
+        # self.gridLayout_3.addWidget( self.pdfViewWidget)
         
         
-        ssplitter1 = QSplitter(Qt.Horizontal)
-        ssplitter1.addWidget(self.listWidget)
-        ssplitter1.addWidget(self.widget_2 )
-        self.gridLayout_3.addWidget(ssplitter1)
+        # ssplitter1 = QSplitter(Qt.Horizontal)
+        # ssplitter1.addWidget(self.listWidget)
+        # ssplitter1.addWidget(self.widget_2 )
+
+        # self.gridLayout_3.addWidget(ssplitter1)
         self.book_data = {}
         self.load_all_book()
         
-        
+   
     def load_pdf(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Open PDF File", "", "PDF Files (*.pdf)")
         if file_path:
@@ -68,10 +71,10 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             
             
                      
-if __name__ =="__main__"    :
-    import sys
-    app = QApplication(sys.argv)                                 
-    mWin = MainWindow()
-    mWin.show()
-    sys.exit(app.exec_())
+# if __name__ =="__main__"    :
+import sys
+app = QApplication(sys.argv)                                 
+mWin = MainWindow()
+mWin.show()
+sys.exit(app.exec_())
         
