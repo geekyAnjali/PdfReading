@@ -1,64 +1,80 @@
+
+import math
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton, QFileDialog, QGraphicsView, QGraphicsScene, QWidget
-from PyQt5.QtGui import QImage, QPixmap
-import fitz  # PyMuPDF
 
-class PDFViewerApp(QMainWindow):
-    def __init__(self):
+from PyQt5.QtWidgets import (QListWidgetItem,QSplitter, QFileDialog, QMainWindow, QMessageBox,
+                               QApplication,QDialog)
+
+
+from PyQt5.QtCore import QModelIndex, QPoint, QStandardPaths, QUrl ,Qt
+from Notes import TextEditor
+from browse import PDFViewerWidget
+from pdfReader_ui import Ui_MainWindow
+import json
+import os 
+
+# a = TextEditor()
+class MainWindow(Ui_MainWindow,QMainWindow):
+    def __init__(self,parent=None):
         super().__init__()
+  
+        self.setupUi(self)
+        self.add_pdf_bttn.clicked.connect(self.load_pdf)
+        # self.gridLayout_2.addWidget(TextEditor(self))
+        TextEditor(self.widget_7)
+        self.pdfViewWidget =  PDFViewerWidget(self.widget_4)
+        # self.gridLayout_3.addWidget( self.pdfViewWidget)
+        
+        
+        # ssplitter1 = QSplitter(Qt.Horizontal)
+        # ssplitter1.addWidget(self.listWidget)
+        # ssplitter1.addWidget(self.widget_2 )
 
-        self.initUI()
-
-    def initUI(self):
-        self.setWindowTitle('PDF Viewer')
-        self.setGeometry(100, 100, 800, 600)
-
-        # Central Widget
-        central_widget = QWidget(self)
-        self.setCentralWidget(central_widget)
-
-        # Layout
-        layout = QVBoxLayout(central_widget)
-
-        # Graphics View
-        self.graphics_view = QGraphicsView(self)
-        layout.addWidget(self.graphics_view)
-
-        # Graphics Scene
-        self.graphics_scene = QGraphicsScene(self)
-        self.graphics_view.setScene(self.graphics_scene)
-
-        # Open Button
-        open_button = QPushButton('Open PDF', self)
-        open_button.clicked.connect(self.openPDF)
-        layout.addWidget(open_button)
-
-    def openPDF(self):
-        file_dialog = QFileDialog(self)
-        file_dialog.setNameFilter("PDF Files (*.pdf)")
-        file_dialog.setViewMode(QFileDialog.Detail)
-
-        file_path, _ = file_dialog.getOpenFileName(self, "Open PDF File", "", "PDF Files (*.pdf)")
-
+        # self.gridLayout_3.addWidget(ssplitter1)
+        self.book_data = {}
+        self.load_all_book()
+        
+   
+    def load_pdf(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Open PDF File", "", "PDF Files (*.pdf)")
         if file_path:
-            self.showPDF(file_path)
-
-    def showPDF(self, file_path):
-        pdf_document = fitz.open(file_path)
-
-        for page_num in range(pdf_document.page_count):
-            page = pdf_document.load_page(page_num)
-            pixmap = page.get_pixmap()
+            self.pdfViewWidget.load_pdf(file_path)
+            self.add_book(file_path)
             
-            qt_image = QImage(pixmap.samples, pixmap.width, pixmap.height, pixmap.stride, QImage.Format_RGB32)
-
-            pixmap = QPixmap.fromImage(qt_image)
-            self.graphics_scene.addPixmap(pixmap)
-
-        pdf_document.close()
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    pdf_viewer = PDFViewerApp()
-    pdf_viewer.show()
-    sys.exit(app.exec_())
+            # book_item = QListWidgetItem(file_path)
+            
+    def add_book(self,book_path):
+        book_name = book_path.split('/')
+        book_name = book_name[len(book_name)-1]
+        self.listWidget.addItem(book_name)
+        self.store_book(book_name,book_path)
+        self.listWidget.itemClicked.connect(self.load_book)
+        
+    
+    def store_book(self,book,path):        
+        with open("book_store.json","w") as file : 
+            # data = json.load(file)
+            self.book_data[book] = path
+            json.dump(self.book_data,file,indent=4)
+            # print(data)
+    def load_book(self,item):
+        book_path = self.book_data[item.text()]
+        self.pdfViewWidget.load_pdf(book_path)
+    
+    def load_all_book(self):
+        print("loading book..")
+        if os.path.exists("book_store.json"):
+            with open("book_store.json","r") as file:
+                self.book_data = json.load(file)
+        for i in list(self.book_data.values()):
+            self.add_book(i)
+            
+            
+                     
+# if __name__ =="__main__"    :
+import sys
+app = QApplication(sys.argv)                                 
+mWin = MainWindow()
+mWin.show()
+sys.exit(app.exec_())
+        
