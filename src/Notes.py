@@ -10,7 +10,6 @@ class TextEditor(QWidget):
         self.setWindowTitle("Your Notes !")
         self.setWindowIcon(QIcon("Images/sticky-notes.png"))
         self.setGeometry(50, 50, 400, 400)
-
         self.textEdit = QTextEdit()
         self.setup_ui()
 

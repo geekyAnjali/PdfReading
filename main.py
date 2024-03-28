@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication
-from pdfReader import MainWindow
+from src.pdfReader import MainWindow
 
     
 if __name__ =="__main__"    :
