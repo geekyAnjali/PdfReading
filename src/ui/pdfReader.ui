@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1013</width>
-    <height>853</height>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,7 +35,7 @@ background-color: rgb(255, 255, 255);}
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="leftMargin">
      <number>0</number>
@@ -88,7 +88,7 @@ background-color: rgb(255, 255, 255);}
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="imagrrsrc.qrc">
+          <iconset>
            <normaloff>:/Icons/Images/book-with-add-button.png</normaloff>:/Icons/Images/book-with-add-button.png</iconset>
          </property>
          <property name="iconSize">
@@ -123,7 +123,7 @@ background-color: rgb(255, 255, 255);}
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="imagrrsrc.qrc">
+          <iconset>
            <normaloff>:/Icons/Images/book.png</normaloff>:/Icons/Images/book.png</iconset>
          </property>
          <property name="iconSize">
@@ -163,6 +163,9 @@ background-color: rgb(255, 255, 255);}
         <number>0</number>
        </property>
        <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
         <number>0</number>
        </property>
        <item row="0" column="0">
@@ -250,7 +253,7 @@ background-color: rgb(255, 255, 255);}
                </sizepolicy>
               </property>
               <property name="styleSheet">
-               <string notr="true"/>
+               <string notr="true">background-color: rgb(202, 255, 187);</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_3">
                <property name="leftMargin">
@@ -263,6 +266,9 @@ background-color: rgb(255, 255, 255);}
                 <number>0</number>
                </property>
                <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <property name="spacing">
                 <number>0</number>
                </property>
               </layout>
@@ -285,6 +291,9 @@ background-color: rgb(255, 255, 255);}
                 <width>200</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(103, 255, 233);</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
                <property name="leftMargin">
@@ -327,7 +336,7 @@ background-color: rgb(255, 255, 255);}
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="imagrrsrc.qrc">
+                  <iconset>
                    <normaloff>:/Icons/Images/find.png</normaloff>:/Icons/Images/find.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -348,6 +357,12 @@ background-color: rgb(255, 255, 255);}
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -381,8 +396,6 @@ background-color: rgb(255, 255, 255);}
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="imagrrsrc.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
