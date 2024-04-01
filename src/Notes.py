@@ -1,24 +1,27 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QHBoxLayout, QPushButton, QAction, QFileDialog, QFontDialog, QColorDialog
+from PyQt5.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QHBoxLayout, QPushButton, QAction, QFileDialog, QFontDialog, QColorDialog,QLabel
 from PyQt5.QtGui import QFont, QColor, QTextCursor,QTextDocument, QIcon
 from PyQt5.QtPrintSupport import QPrinter,QPrintDialog
-import fitz ,os
+# import fitz ,os
+import os 
 
 class TextEditor(QWidget):
     def __init__(self,parent  = None):
         super().__init__(parent)
         self.setWindowTitle("Your Notes !")
         self.setWindowIcon(QIcon("Images/sticky-notes.png"))
-        self.setGeometry(50, 50, 400, 400)
+        # self.setSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        self.setGeometry(50, 50, 200, 200)
         self.textEdit = QTextEdit()
         self.setup_ui()
 
     def setup_ui(self):
+        lable  = QLabel(" 🖋️ Write Your Notes here 📝")
         layout = QVBoxLayout()
         self.setLayout(layout)
-
+        layout.addWidget(lable)
         layout.addWidget(self.textEdit)
-
+        layout.setContentsMargins(0,0,0,0)
         # Button Layout
         button_layout = QHBoxLayout()
         layout.addLayout(button_layout)
