@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="Images">
+    <file>book.png</file>
+    <file>remove.png</file>
+    <file>hourglass.png</file>
+    <file>musical-note.png</file>
+    <file>book-with-add-button.png</file>
+    <file>diskette.png</file>
+    <file>find.png</file>
+    <file>fonts.png</file>
+    <file>italic.png</file>
+    <file>letter-h.png</file>
+    <file>notebook.png</file>
+    <file>rgb.png</file>
+    <file>stationery.png</file>
+    <file>sticky-notes.png</file>
+    <file>underline-text.png</file>
+    <file>write.png</file>
+  </qresource>
+</RCC>
