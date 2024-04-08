@@ -13,8 +13,14 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../Images/res_rc.qrc">
+    <normaloff>:/Images/stationery.png</normaloff>:/Images/stationery.png</iconset>
+  </property>
   <property name="styleSheet">
-   <string notr="true">
+   <string notr="true">QSplitter::handle {
+    background: gray;
+}
 
 
 QPushButton {
@@ -67,6 +73,44 @@ background-color: rgb(255, 255, 255);}
        <property name="bottomMargin">
         <number>0</number>
        </property>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="focus_music_bttn">
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Focus music</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../../Images/res_rc.qrc">
+           <normaloff>:/Images/musical-note.png</normaloff>:/Images/musical-note.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="add_pdf_bttn">
          <property name="minimumSize">
@@ -84,12 +128,15 @@ background-color: rgb(255, 255, 255);}
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
+         <property name="toolTip">
+          <string>Add Pdf</string>
+         </property>
          <property name="text">
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>:/Icons/Images/book-with-add-button.png</normaloff>:/Icons/Images/book-with-add-button.png</iconset>
+          <iconset resource="../../Images/res_rc.qrc">
+           <normaloff>:/Images/book.png</normaloff>:/Images/book.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -100,7 +147,23 @@ background-color: rgb(255, 255, 255);}
          <property name="autoRepeat">
           <bool>true</bool>
          </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
         </widget>
+       </item>
+       <item row="0" column="4">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="remove_pdf_bttn">
@@ -119,12 +182,15 @@ background-color: rgb(255, 255, 255);}
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
+         <property name="toolTip">
+          <string>Remove Pdf</string>
+         </property>
          <property name="text">
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>:/Icons/Images/book.png</normaloff>:/Icons/Images/book.png</iconset>
+          <iconset resource="../../Images/res_rc.qrc">
+           <normaloff>:/Images/remove.png</normaloff>:/Images/remove.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -132,20 +198,48 @@ background-color: rgb(255, 255, 255);}
            <height>50</height>
           </size>
          </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+       <item row="0" column="3">
+        <widget class="QPushButton" name="focus_time_bttn">
+         <property name="minimumSize">
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>30</width>
+           <height>30</height>
           </size>
          </property>
-        </spacer>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Focus timer</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../../Images/res_rc.qrc">
+           <normaloff>:/Images/hourglass.png</normaloff>:/Images/hourglass.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -293,7 +387,7 @@ background-color: rgb(255, 255, 255);}
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(103, 255, 233);</string>
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
                <property name="leftMargin">
@@ -316,6 +410,9 @@ background-color: rgb(255, 255, 255);}
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="dragEnabled">
+                  <bool>false</bool>
+                 </property>
                 </widget>
                </item>
                <item row="0" column="1">
@@ -336,8 +433,8 @@ background-color: rgb(255, 255, 255);}
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset>
-                   <normaloff>:/Icons/Images/find.png</normaloff>:/Icons/Images/find.png</iconset>
+                  <iconset resource="../../Images/res_rc.qrc">
+                   <normaloff>:/Images/find.png</normaloff>:/Images/find.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -396,6 +493,8 @@ background-color: rgb(255, 255, 255);}
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../Images/res_rc.qrc"/>
+ </resources>
  <connections/>
 </ui>
