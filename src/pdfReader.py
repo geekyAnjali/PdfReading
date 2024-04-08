@@ -14,6 +14,7 @@ import json
 import os 
 import src.imagrrsrc_rc
 from englisttohindi.englisttohindi import EngtoHindi
+import threading
 # a = TextEditor()
 class MainWindow(Ui_MainWindow,QMainWindow):
     def __init__(self,parent=None):
@@ -84,11 +85,15 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         # self.listWidget.removeItemWidget(curItem)
     
     def translate_english_to_hindi(self):
-        word = self.lineEdit.text()
-        res = EngtoHindi(word)
-        print(res.convert)
-        self.label.setText(res.convert)
-        return res.convert
+        def translate_th():
+            word = self.lineEdit.text()
+            self.res = EngtoHindi(word)
+            print(self.res.convert)
+            self.label.setText(self.res.convert)
+        tTh =threading.Thread(translate_th)
+        tTh.start()
+        
+        # return res.convert
 if __name__ =="__main__"    :
     import sys
     app = QApplication(sys.argv)                                 
