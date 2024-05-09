@@ -15,6 +15,7 @@ import os
 import src.imagrrsrc_rc
 from englisttohindi.englisttohindi import EngtoHindi
 import threading
+from src.FocusTimer import FocusTimer
 # a = TextEditor()
 class MainWindow(Ui_MainWindow,QMainWindow):
     def __init__(self,parent=None):
@@ -31,6 +32,19 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         self.book_data = {}
         self.load_books_to_listWidget()
         self.search_bttn.clicked.connect(self.translate_english_to_hindi)
+        self.focus_time_bttn.clicked.connect(self.ShowFocusTimer)
+        self.focus_music_bttn.clicked.connect(self.playFocusMusic)
+        self.Focus_timer = None
+    def ShowFocusTimer(self):
+        if self.Focus_timer is None: 
+            self.Focus_timer = FocusTimer()
+            
+            self.Focus_timer.show()
+    
+
+    def playFocusMusic(self):
+        pass 
+
         
    
     def load_pdf(self):
@@ -61,21 +75,23 @@ class MainWindow(Ui_MainWindow,QMainWindow):
     def load_book(self,item):
         book_path = self.book_data[item.text()]
         self.pdfViewWidget.load_pdf(book_path)
-    
+   
     def load_books_to_listWidget(self):
         print("loading book..")
-        if os.path.exists("src/book_store.json"):
-            with open("src/book_store.json","r") as file:
+        
+        if os.path.exists("book_store.json"):
+            with open("book_store.json","r", encoding="utf-8") as file:
                 print("inside ")
                 self.book_data = json.load(file)
                 print(self.book_data)
+            keys = list(self.book_data.keys())
+            self.pdfViewWidget.load_pdf(self.book_data[keys[0]])
+            for i in list(self.book_data.values()):
+                self.add_book(i)
         else : 
             print("book doesn't exists")
         keys = list(self.book_data.keys())
         print(keys)
-        self.pdfViewWidget.load_pdf(self.book_data[keys[0]])
-        for i in list(self.book_data.values()):
-            self.add_book(i)
             
     def remove_book_from_listwidget(self):
         # self.listWidget.item
@@ -90,7 +106,8 @@ class MainWindow(Ui_MainWindow,QMainWindow):
             self.res = EngtoHindi(word)
             print(self.res.convert)
             self.label.setText(self.res.convert)
-        tTh =threading.Thread(translate_th)
+
+        tTh =threading.Thread(target=translate_th)
         tTh.start()
         
         # return res.convert

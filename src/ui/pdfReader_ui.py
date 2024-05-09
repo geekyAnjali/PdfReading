@@ -220,7 +220,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "PdfFusion"))
         self.focus_music_bttn.setToolTip(_translate("MainWindow", "Focus music"))
         self.add_pdf_bttn.setToolTip(_translate("MainWindow", "Add Pdf"))
         self.remove_pdf_bttn.setToolTip(_translate("MainWindow", "Remove Pdf"))
