@@ -17,5 +17,9 @@
     <file>underline-text.png</file>
     <file>write.png</file>
     <file>stationery.ico</file>
+    <file>learning_stats.png</file>
+    <file>night-mode.png</file>
+    <file>stop-watch.png</file>
+    <file>musical-note (1).png</file>
   </qresource>
 </RCC>
