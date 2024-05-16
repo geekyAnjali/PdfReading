@@ -13,12 +13,11 @@ from src.modules.browse import PDFViewerWidget
 from src.ui.pdfReader_ui import Ui_MainWindow
 import json
 import os 
-import src.modules.imagrrsrc_rc
+import src.res_rc_rc
 from englisttohindi.englisttohindi import EngtoHindi
 import threading
 from src.modules.FocusTimer import FocusTimer
-
-
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 # a = TextEditor()
 class MainWindow(Ui_MainWindow,QMainWindow):
     def __init__(self,parent=None):
@@ -38,6 +37,9 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         self.focus_time_bttn.clicked.connect(self.ShowFocusTimer)
         self.focus_music_bttn.clicked.connect(self.playFocusMusic)
         self.Focus_timer = None
+        self.isPlaying = False
+        self.media_player = QMediaPlayer()
+
     def ShowFocusTimer(self):
         if self.Focus_timer is None: 
             self.Focus_timer = FocusTimer()
@@ -46,8 +48,17 @@ class MainWindow(Ui_MainWindow,QMainWindow):
     
 
     def playFocusMusic(self):
-        pass 
-
+        print(self.isPlaying)
+        if not self.isPlaying:    
+            file_path = "D:\Projects\PdfNoteFusion\PdfReading\src\calmMusic\melody-of-nature-main.mp3"  # Change this to the path of your MP3 file
+            audio_url = QUrl.fromLocalFile(file_path)
+            media_content = QMediaContent(audio_url)
+            self.media_player.setMedia(media_content)
+            self.media_player.play()
+            self.isPlaying = True
+        else:
+            self.media_player.pause()
+            self.isPlaying = False
     def load_pdf(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Open PDF File", "", "PDF Files (*.pdf)")
         if file_path:
@@ -92,7 +103,7 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         else : 
             print("book doesn't exists")
         keys = list(self.book_data.keys())
-        print(keys)
+        # print(keys)
             
     def remove_book_from_listwidget(self):
         # self.listWidget.item
