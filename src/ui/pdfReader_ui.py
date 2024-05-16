@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.splitter_2 = QtWidgets.QSplitter(self.widget_pdf)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setHorizontalStretch(0)                                                                                                                                                                                
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.splitter_2.sizePolicy().hasHeightForWidth())
         self.splitter_2.setSizePolicy(sizePolicy)
@@ -220,11 +220,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "PdfFusion"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "PdfNoteFusion"))
         self.focus_music_bttn.setToolTip(_translate("MainWindow", "Focus music"))
         self.add_pdf_bttn.setToolTip(_translate("MainWindow", "Add Pdf"))
         self.remove_pdf_bttn.setToolTip(_translate("MainWindow", "Remove Pdf"))
         self.focus_time_bttn.setToolTip(_translate("MainWindow", "Focus timer"))
+
 from Images import res_rc_rc
 
 
