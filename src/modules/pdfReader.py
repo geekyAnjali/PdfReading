@@ -18,6 +18,8 @@ from englisttohindi.englisttohindi import EngtoHindi
 import threading
 from src.modules.FocusTimer import FocusTimer
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
+
+from src.modules.read_stats import GraphOptionsWindow
 # a = TextEditor()
 class MainWindow(Ui_MainWindow,QMainWindow):
     def __init__(self,parent=None):
@@ -36,10 +38,16 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         self.search_bttn.clicked.connect(self.translate_english_to_hindi)
         self.focus_time_bttn.clicked.connect(self.ShowFocusTimer)
         self.focus_music_bttn.clicked.connect(self.playFocusMusic)
+        self.read_stats_bttn.clicked.connect(self.showGraphOptions)
         self.Focus_timer = None
         self.isPlaying = False
         self.media_player = QMediaPlayer()
-
+        self.records = self.load_records()
+    def load_records(self):
+        if os.path.exists("read_records.json"):
+            with open("read_records.json", "r") as file:
+                return json.load(file)
+        return {}
     def ShowFocusTimer(self):
         if self.Focus_timer is None: 
             self.Focus_timer = FocusTimer()
@@ -134,7 +142,9 @@ class MainWindow(Ui_MainWindow,QMainWindow):
 
         tTh =threading.Thread(target=translate_th)
         tTh.start()
-        
+    def showGraphOptions(self):
+        self.graphOptionsWindow = GraphOptionsWindow(self.records)
+        self.graphOptionsWindow.show()
         # return res.convert
 def main():
     import sys
