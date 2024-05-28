@@ -20,7 +20,7 @@ from src.modules.FocusTimer import FocusTimer
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 
 from src.modules.read_stats import GraphOptionsWindow
-# a = TextEditor()
+
 class MainWindow(Ui_MainWindow,QMainWindow):
     def __init__(self,parent=None):
         super().__init__()
@@ -39,24 +39,41 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         self.focus_time_bttn.clicked.connect(self.ShowFocusTimer)
         self.focus_music_bttn.clicked.connect(self.playFocusMusic)
         self.read_stats_bttn.clicked.connect(self.showGraphOptions)
-        self.Focus_timer = None
+        self.is_timer_active = None
         self.isPlaying = False
         self.media_player = QMediaPlayer()
         self.records = self.load_records()
+        
+
     def load_records(self):
         if os.path.exists("read_records.json"):
             with open("read_records.json", "r") as file:
                 return json.load(file)
         return {}
+
     def ShowFocusTimer(self):
-        if self.Focus_timer is None: 
-            self.Focus_timer = FocusTimer()
+        """
+        The ShowFocusTimer is called to show the focus timer : 
+        This will start calculating the time from 00:00:00 to+1 , 
+        This sends the value of the center of the mainwindows , center positons.
+        """
+        if self.is_timer_active is None: 
+            x_pos = self.x() + self.width()//2 # this position will always be at the top center of the main windows size
+            y_pos = self.y()
+            self.Focus_timer = FocusTimer(x_pos=x_pos, y_pos=y_pos)
             
             self.Focus_timer.show()
+            self.is_timer_active = None
     
 
     def playFocusMusic(self):
-        print(self.isPlaying)
+        """ 
+            This Focus Music palys a single focus music each time 
+            When we click
+            This will  Start and stop the music on the same button click , simultaneously
+            TO DO: Add different icon to stop the music playing 
+        """
+        
         if not self.isPlaying:    
             file_path = "D:\Projects\PdfNoteFusion\PdfReading\src\calmMusic\melody-of-nature-main.mp3"  # Change this to the path of your MP3 file
             audio_url = QUrl.fromLocalFile(file_path)
@@ -67,7 +84,13 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         else:
             self.media_player.pause()
             self.isPlaying = False
+
     def load_pdf(self):
+        """
+        shows a qfiledialog to openfile 
+        and shows the pdf in to the pdfwidget 
+        """
+
         file_path, _ = QFileDialog.getOpenFileName(self, "Open PDF File", "", "PDF Files (*.pdf)")
         if file_path:
             self.pdfViewWidget.load_pdf(file_path)
@@ -86,7 +109,12 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         self.listWidget.itemClicked.connect(self.load_book)
         
     
-    def store_book(self,book,path):        
+    def store_book(self,book,path):  
+        """
+        This Functions Basically use to store the book name, and it's address to a .json file 
+        book --> it's just a .pdf name
+        path --> location of the pdf file
+        """      
         with open("book_store.json","w") as file : 
             # data = json.load(file)
             self.book_data[book] = path
@@ -137,20 +165,35 @@ class MainWindow(Ui_MainWindow,QMainWindow):
         def translate_th():
             word = self.lineEdit.text()
             self.res = EngtoHindi(word)
-            print(self.res.convert)
             self.label.setText(self.res.convert)
 
         tTh =threading.Thread(target=translate_th)
         tTh.start()
+
     def showGraphOptions(self):
+        """
+        The show Graph Options show a dialog box to select to types of graph mode 
+        1) Books and Read timer 
+        2) Date and Total book read in particular date
+        """
         self.graphOptionsWindow = GraphOptionsWindow(self.records)
         self.graphOptionsWindow.show()
+    
+    def closeEvent(self,event):
+        """
+            When the main window will be closed , it will help in closing the another windows.
+        """
+        try: 
+            self.Focus_timer.close()
+        except AttributeError as e : 
+            print(e)
         # return res.convert
 def main():
     import sys
     app = QApplication(sys.argv)                                 
     mWin = MainWindow()
     mWin.setWindowIcon(QIcon("stationery.ico"))
+    mWin.setWindowTitle("PDFNoteFusion")
     mWin.show()
     sys.exit(app.exec_())
 

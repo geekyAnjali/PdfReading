@@ -3,24 +3,26 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLay
 from PyQt5.QtCore import QTimer, QTime, Qt
 
 class FocusTimer(QWidget):
-    def __init__(self,parent=None):
+    def __init__(self,x_pos,y_pos,parent=None):
         super().__init__(parent)
-        
+        self.x_pos = x_pos
+        self.y_pos = y_pos
         self.initUI()
         
     def initUI(self):
      
-        self.setGeometry(100, 100, 250, 200)
+        self.setGeometry(self.x_pos, self.y_pos, 150, 100)
+    
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.setStyleSheet("background: black; color :white;")
         self.timer_label = QLabel(self)
         self.timer_label.setAlignment(Qt.AlignCenter)
-        self.timer_label.setStyleSheet("font-size: 40px; font-family: Arial; color: #333;")
+        self.timer_label.setStyleSheet("font-size: 40px; font-family: Arial;")
         self.timer_label.setText("00:00:00")
         
         self.close_button = QPushButton('X', self)
         self.close_button.setStyleSheet(
-            "QPushButton { border: none; font-size: 16px; color: #666;width: 30px; height:30px; }"
+            "QPushButton { border: none; font-size: 16px;width: 30px; height:30px; }"
             "QPushButton:hover {color: #333; background-color:red; }"
         )
 
@@ -62,6 +64,6 @@ class FocusTimer(QWidget):
 
 app = QApplication(sys.argv)
 if __name__ == '__main__':
-    widget = FocusTimer()
+    widget = FocusTimer(100,100)
     widget.show()
     sys.exit(app.exec_())

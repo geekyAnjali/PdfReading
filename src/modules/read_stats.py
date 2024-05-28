@@ -15,11 +15,19 @@ class GraphOptionsWindow(QWidget):
 
     def initUI(self):
         self.setWindowTitle('Select Graph Type')
-        self.setGeometry(200, 200, 300, 150)
+        self.setGeometry(100, 50, 50, 50)
+        self.setStyleSheet("""
+        background-color:#144b6d;
+        color:white;
+        QInputBox{border:1px solid white;}
+        """)
+
 
         layout = QVBoxLayout()
 
         self.comboBox = QComboBox(self)
+
+        self.comboBox.addItem("Select Graph Type")
         self.comboBox.addItem("Date vs Number of Books Read")
         self.comboBox.addItem("Date vs Total Read Time")
         self.comboBox.currentIndexChanged.connect(self.generateGraph)
@@ -29,13 +37,15 @@ class GraphOptionsWindow(QWidget):
 
         self.setLayout(layout)
 
-    def generateGraph(self):
+    def generateGraph(self,index):
+        
         graphType = self.comboBox.currentText()
 
         if graphType == "Date vs Number of Books Read":
             self.plotBooksRead()
         elif graphType == "Date vs Total Read Time":
             self.plotReadTime()
+        self.close()
 
     def plotBooksRead(self):
         dates = []
@@ -47,7 +57,7 @@ class GraphOptionsWindow(QWidget):
 
         colors = ['#%06X' % random.randint(0, 0xFFFFFF) for _ in range(len(dates))]
 
-        plt.figure(figsize=(10, 5))
+        plt.figure(figsize=(5, 4))
         plt.bar(dates, books_read, color=colors, width=0.5)
         plt.xlabel('Date', color='white')
         plt.ylabel('Number of Books Read', color='white')
@@ -74,7 +84,7 @@ class GraphOptionsWindow(QWidget):
             dates.append(date)
             total_read_time.append(total_time / 3600)  # Convert seconds to hours
 
-        plt.figure(figsize=(10, 5))
+        plt.figure(figsize=(5, 4))
         plt.plot(dates, total_read_time, marker='o', linestyle='-', color='green')
         plt.xlabel('Date', color='white')
         plt.ylabel('Total Read Time (hours)', color='white')
@@ -85,3 +95,29 @@ class GraphOptionsWindow(QWidget):
         plt.gcf().set_facecolor('black')
         plt.tight_layout()
         plt.show()
+
+
+    def showGraphOptions(self):
+        self.records = load_records()
+        self.graphOptionsWindow = GraphOptionsWindow(self.records)
+        self.graphOptionsWindow.show()
+
+           
+
+        # return res.convert
+def main():
+    import sys
+    app = QApplication(sys.argv) 
+    records = load_records()                                
+    mWin = GraphOptionsWindow(records)
+    # mWin.setWindowIcon(QIcon("stationery.ico"))
+    mWin.show()
+    sys.exit(app.exec_())
+def load_records():
+    if os.path.exists("read_records.json"):
+        with open("read_records.json", "r") as file:
+            return json.load(file)
+    return {}
+
+if __name__=="__main__":
+    main()

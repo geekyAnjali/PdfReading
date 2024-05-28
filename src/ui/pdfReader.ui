@@ -18,27 +18,32 @@
     <normaloff>:/Images/stationery.png</normaloff>:/Images/stationery.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(154, 154, 161);
-
+   <string notr="true">QObject{
+background-color: rgb(154, 154, 161);
+}
 QSplitter::handle {
     background: gray;
 }
 
 
-QPushButton {
+    QPushButton:hover {
+border:1px solid grey;
+background-color : grey;
+   
+    }
 
-	background-color: transparent;
+    QPushButton:pressed {
+        background-color: rgb(10,10,10);
+    }
 
- }
 
-/*  QLineEdit{
+QLineEdit{
 background-color: rgb(255, 255, 255);}
 
 QPlainTextEdit{
 
 background-color: rgb(255, 255, 255);}
-
-*/</string>
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -60,33 +65,45 @@ background-color: rgb(255, 255, 255);}
     <item>
      <widget class="QWidget" name="widget" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(230, 230, 230);</string>
+       <string notr="true">QWidget{
+background-color: rgb(230, 230, 230);
+}
+</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_5">
-       <property name="rightMargin">
+       <property name="leftMargin">
         <number>0</number>
        </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>6</number>
+       </property>
        <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
         <number>0</number>
        </property>
        <item row="0" column="2">
         <widget class="QPushButton" name="focus_music_bttn">
          <property name="minimumSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>20</width>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>50</width>
+           <height>50</height>
           </size>
          </property>
          <property name="cursor">
@@ -104,9 +121,18 @@ background-color: rgb(255, 255, 255);}
          </property>
          <property name="iconSize">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -117,14 +143,14 @@ background-color: rgb(255, 255, 255);}
         <widget class="QPushButton" name="remove_pdf_bttn">
          <property name="minimumSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>20</width>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>50</width>
+           <height>50</height>
           </size>
          </property>
          <property name="cursor">
@@ -142,9 +168,18 @@ background-color: rgb(255, 255, 255);}
          </property>
          <property name="iconSize">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -168,14 +203,14 @@ background-color: rgb(255, 255, 255);}
         <widget class="QPushButton" name="add_pdf_bttn">
          <property name="minimumSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>20</width>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>50</width>
+           <height>50</height>
           </size>
          </property>
          <property name="cursor">
@@ -193,12 +228,21 @@ background-color: rgb(255, 255, 255);}
          </property>
          <property name="iconSize">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
          </property>
          <property name="autoRepeat">
           <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -209,14 +253,14 @@ background-color: rgb(255, 255, 255);}
         <widget class="QPushButton" name="focus_time_bttn">
          <property name="minimumSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>20</width>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>50</width>
+           <height>50</height>
           </size>
          </property>
          <property name="cursor">
@@ -234,9 +278,18 @@ background-color: rgb(255, 255, 255);}
          </property>
          <property name="iconSize">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -247,14 +300,14 @@ background-color: rgb(255, 255, 255);}
         <widget class="QPushButton" name="dark_mode_bttn">
          <property name="minimumSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>20</width>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>50</width>
+           <height>50</height>
           </size>
          </property>
          <property name="cursor">
@@ -272,9 +325,18 @@ background-color: rgb(255, 255, 255);}
          </property>
          <property name="iconSize">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -285,14 +347,14 @@ background-color: rgb(255, 255, 255);}
         <widget class="QPushButton" name="read_stats_bttn">
          <property name="minimumSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>20</width>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>50</width>
+           <height>50</height>
           </size>
          </property>
          <property name="cursor">
@@ -310,9 +372,18 @@ background-color: rgb(255, 255, 255);}
          </property>
          <property name="iconSize">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -324,6 +395,12 @@ background-color: rgb(255, 255, 255);}
     </item>
     <item>
      <widget class="QWidget" name="widget_3" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <layout class="QGridLayout" name="gridLayout">
        <property name="leftMargin">
         <number>0</number>
@@ -352,6 +429,12 @@ background-color: rgb(255, 255, 255);}
           <bool>true</bool>
          </property>
          <widget class="QWidget" name="widget_pdf" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <property name="leftMargin">
             <number>0</number>
@@ -381,7 +464,7 @@ background-color: rgb(255, 255, 255);}
              </property>
              <widget class="QListWidget" name="listWidget">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -419,7 +502,7 @@ background-color: rgb(255, 255, 255);}
              </widget>
              <widget class="QWidget" name="widget_4" native="true">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -447,7 +530,7 @@ background-color: rgb(255, 255, 255);}
              </widget>
              <widget class="QWidget" name="search_widget" native="true">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -468,18 +551,6 @@ background-color: rgb(255, 255, 255);}
                <string notr="true"/>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
                <item row="0" column="0">
                 <widget class="QLineEdit" name="lineEdit">
                  <property name="sizePolicy">
@@ -488,8 +559,17 @@ background-color: rgb(255, 255, 255);}
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="tabletTracking">
+                  <bool>false</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
                  <property name="dragEnabled">
                   <bool>false</bool>
+                 </property>
+                 <property name="cursorMoveStyle">
+                  <enum>Qt::VisualMoveStyle</enum>
                  </property>
                 </widget>
                </item>
@@ -505,7 +585,7 @@ background-color: rgb(255, 255, 255);}
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:transparent;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
@@ -520,9 +600,12 @@ background-color: rgb(255, 255, 255);}
                    <height>20</height>
                   </size>
                  </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
                 </widget>
                </item>
-               <item row="2" column="0" colspan="2">
+               <item row="1" column="0">
                 <widget class="QLabel" name="label">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
