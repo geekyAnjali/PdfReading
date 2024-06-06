@@ -41,6 +41,16 @@ class TextEditor(QWidget):
         save_button.clicked.connect(self.save_file)
         button_layout.addWidget(save_button)
         save_button.setIcon(QIcon(save_icn_path))
+        self.setStyleSheet("""QPushButton {
+    min-width: 20px;      /* Minimum width of the button */
+    min-height: 20px;      /* Minimum height of the button */
+    max-width: 50px;      /* Maximum width of the button */
+    max-height: 50px;      /* Maximum height of the button */
+    padding: 5px;          /* Padding inside the button */
+    border: none;          /* Remove borders to make the button flat */
+    background-color: none; /* Light gray background */
+
+}""")
         # save_button.setIcon(QIcon("diskette.png"))
 
         

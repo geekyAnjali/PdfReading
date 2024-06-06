@@ -17,7 +17,7 @@ class GraphOptionsWindow(QWidget):
         self.setWindowTitle('Select Graph Type')
         self.setGeometry(100, 50, 50, 50)
         self.setStyleSheet("""
-        background-color:#144b6d;
+        background-color:#313535;
         color:white;
         QInputBox{border:1px solid white;}
         """)

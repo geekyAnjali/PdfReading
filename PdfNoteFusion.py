@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication
-from src.modules.pdfReader import main
+from src.pdfReader import main
 from PyQt5.QtGui import QIcon
 
 
